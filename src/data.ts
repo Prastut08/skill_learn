@@ -49,6 +49,8 @@ export const sampleJobListings: JobListing[] = [
     company: "Cafe Coffee Day Inc.",
     logoBgColor: "bg-amber-800",
     payRate: "$25 - $35/hr",
+    location: "Neighborhood",
+    workStyle: "Hourly",
     category: "Marketing",
     matchScore: 98,
     matchBullets: [
@@ -75,6 +77,8 @@ export const sampleJobListings: JobListing[] = [
     company: "DecentralStart Labs",
     logoBgColor: "bg-indigo-900",
     payRate: "$45 - $55/hr",
+    location: "Remote",
+    workStyle: "Hourly",
     category: "Dev & Tech",
     matchScore: 94,
     matchBullets: [
@@ -100,6 +104,8 @@ export const sampleJobListings: JobListing[] = [
     company: "ByteDance Labs (R&D)",
     logoBgColor: "bg-blue-600",
     payRate: "$50 - $65/hr",
+    location: "Campus",
+    workStyle: "Hourly",
     category: "Design",
     matchScore: 97,
     matchBullets: [
@@ -125,6 +131,8 @@ export const sampleJobListings: JobListing[] = [
     company: "AI Forge Studios",
     logoBgColor: "bg-emerald-800",
     payRate: "$40 - $50/hr",
+    location: "Nearby",
+    workStyle: "Hourly",
     category: "Dev & Tech",
     matchScore: 99,
     matchBullets: [
@@ -150,6 +158,8 @@ export const sampleJobListings: JobListing[] = [
     company: "LaunchPad PR Group",
     logoBgColor: "bg-rose-700",
     payRate: "$22 - $28/hr",
+    location: "Campus",
+    workStyle: "Hourly",
     category: "Writing & Content",
     matchScore: 88,
     matchBullets: [
@@ -166,6 +176,60 @@ export const sampleJobListings: JobListing[] = [
       "Compose 2 SEO-optimized blog posts per week (800 words)",
       "Draft promotional highlights for LinkedIn and Twitter",
       "Implement target keywords strategically based on SEO recommendations"
+    ]
+  },
+  {
+    id: "gig-campus-crew",
+    title: "Campus Event Crew Assistant",
+    company: "Student Union Events",
+    logoBgColor: "bg-teal-800",
+    payRate: "$18 - $24/hr",
+    location: "Campus",
+    workStyle: "Hourly",
+    category: "Business",
+    matchScore: 91,
+    matchBullets: [
+      "Ideal for students who can work short shifts on campus.",
+      "Fits evening and weekend schedules around classes.",
+      "Great if you want to stay nearby and avoid commuting."
+    ],
+    skillsRequired: ["Communication", "Event Setup", "Customer Service", "Reliability"],
+    hoursPerWeek: "4 hrs/week",
+    isVerified: true,
+    isHot: true,
+    recentPosting: true,
+    description: "Support campus concerts, orientation, and club events with setup, guest check-in, and light coordination. This is an in-person hourly role on campus.",
+    deliverables: [
+      "Help with event setup and teardown",
+      "Check in guests and answer questions",
+      "Coordinate with student organizers during shifts"
+    ]
+  },
+  {
+    id: "gig-neighborhood-cafe",
+    title: "Neighborhood Cafe Shift Support",
+    company: "Corner Bean Collective",
+    logoBgColor: "bg-orange-800",
+    payRate: "$16 - $22/hr",
+    location: "Neighborhood",
+    workStyle: "Hourly",
+    category: "Business",
+    matchScore: 89,
+    matchBullets: [
+      "Local hourly job close to campus housing.",
+      "Good fit for students wanting flexible weekday shifts.",
+      "No long commute, just a short walk or bus ride."
+    ],
+    skillsRequired: ["Customer Service", "Cash Handling", "Communication", "Speed"],
+    hoursPerWeek: "12 hrs/week",
+    isVerified: false,
+    isHot: true,
+    recentPosting: true,
+    description: "A neighborhood cafe near the university is hiring students for morning and afternoon shifts. This is an in-person hourly role with immediate openings.",
+    deliverables: [
+      "Serve customers and manage simple orders",
+      "Handle register and closing tasks",
+      "Support weekend rush hours"
     ]
   }
 ];

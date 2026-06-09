@@ -45,37 +45,44 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F8F9FD] text-gray-800 font-sans flex flex-col justify-between">
       
-      {/* 1. TOP HEADER BRAND BAR */}
-      <header className="bg-white border-b border-gray-100 px-4 py-3 sticky top-0 z-40 shadow-sm shadow-gray-50/20">
-        <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {/* Elegant logo mark */}
-            <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black text-base shadow-sm">
-              S⚡
+      {/* 1. TOP HEADER BRAND BAR (Redesigned) */}
+      <header className="sticky top-4 z-50">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="glass-card flex items-center justify-between gap-4 p-4 rounded-3xl shadow-glass-lg border border-white/40">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-extrabold brand-gradient shadow-md">
+                SE
+              </div>
+              <div>
+                <div className="flex items-center gap-3">
+                  <h1 className="text-lg font-extrabold tracking-tight">SkillEarn</h1>
+                  <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider">Stanford Sandbox</span>
+                </div>
+                <p className="text-xs text-slate-500 mt-0.5">Micro-gigs, micro-internships — start earning fast.</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-base font-black tracking-tight text-gray-950 flex items-center gap-1">
-                SkillEarn
-                <span className="text-[10px] font-extrabold bg-indigo-50 text-indigo-700 px-1.5 py-0.2 rounded border border-indigo-100 uppercase tracking-widest leading-none">
-                  STANFORD sandbox
-                </span>
-              </h1>
-            </div>
-          </div>
 
-          {/* Quick User State Widget */}
-          <div 
-            onClick={() => setActiveTab('profile')} 
-            className="flex items-center gap-2 bg-gray-50 hover:bg-gray-100/80 px-2.5 py-1.5 rounded-xl border border-gray-100 cursor-pointer transition-colors"
-          >
-            <div className="w-6 h-6 rounded-full bg-indigo-600 text-[10px] font-black text-white flex items-center justify-center">
-              {profile.name.split(' ').map(n=>n[0]).join('')}
+            <div className="flex-1 max-w-xl mx-4">
+              <div className="relative">
+                <input
+                  placeholder="Search gigs, skills, or ask AI e.g. 'React, Figma'"
+                  className="w-full rounded-xl py-3 px-4 border border-white/40 bg-white/70 text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                />
+                <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                  <button className="text-sm text-slate-700 font-semibold">Search</button>
+                </div>
+              </div>
             </div>
-            <div className="text-left hidden xs:block">
-              <span className="text-[10px] text-gray-500 font-bold block leading-none">{profile.name}</span>
-              <span className="text-[9px] text-indigo-600 font-bold flex items-center gap-0.5 leading-none mt-0.5">
-                <ShieldCheck className="w-2.5 h-2.5" /> Reliability: {profile.reliabilityScore}%
-              </span>
+
+            <div className="flex items-center gap-3">
+              <button onClick={() => setActiveTab('coach')} className="text-sm bg-primary-500 hover:bg-primary-600 text-white px-3 py-2 rounded-xl font-semibold">AI Coach</button>
+              <div onClick={() => setActiveTab('profile')} className="flex items-center gap-3 cursor-pointer">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-primary-500 to-purple-600 text-white flex items-center justify-center font-bold">{profile.name.split(' ').map(n=>n[0]).join('')}</div>
+                <div className="hidden sm:block text-left">
+                  <div className="text-xs font-semibold">{profile.name}</div>
+                  <div className="text-[11px] text-slate-500">Reliability {profile.reliabilityScore}%</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -140,52 +147,25 @@ export default function App() {
       </AnimatePresence>
 
       {/* 4. SOLID DESKTOP-PAD BOTTOM NAVIGATION BAR */}
-      <nav className="fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-gray-100 p-3 z-40 shadow-xl">
-        <div className="max-w-2xl mx-auto grid grid-cols-3 gap-1">
-          
-          <button
-            onClick={() => setActiveTab('marketplace')}
-            className={`flex flex-col items-center justify-center py-1.5 rounded-xl transition-all cursor-pointer ${
-              activeTab === 'marketplace'
-                ? 'text-indigo-600 bg-indigo-50/50 font-black'
-                : 'text-gray-400 hover:text-gray-600 font-medium'
-            }`}
-            id="nav-btn-marketplace"
-          >
-            <Briefcase className="w-5 h-5 mb-0.5" />
-            <span className="text-[10px]">Marketplace</span>
-          </button>
+      <nav className="fixed bottom-6 inset-x-6 z-50">
+        <div className="max-w-3xl mx-auto">
+          <div className="glass-card flex items-center justify-between px-4 py-2 rounded-3xl shadow-glass-lg border border-white/40">
+            <div className="flex items-center gap-6">
+              <button onClick={() => setActiveTab('marketplace')} className={`flex items-center gap-2 px-3 py-2 rounded-xl ${activeTab==='marketplace'? 'bg-primary-500 text-white':'text-slate-600 hover:bg-slate-100'}`}>
+                <Briefcase className="w-4 h-4" /> <span className="text-sm hidden sm:inline">Marketplace</span>
+              </button>
 
-          <button
-            onClick={() => setActiveTab('coach')}
-            className={`flex flex-col items-center justify-center py-1.5 rounded-xl transition-all cursor-pointer relative ${
-              activeTab === 'coach'
-                ? 'text-indigo-600 bg-indigo-50/50 font-black'
-                : 'text-gray-400 hover:text-gray-600 font-medium'
-            }`}
-            id="nav-btn-coach"
-          >
-            <Sparkles className="w-5 h-5 mb-0.5 text-indigo-500" />
-            <span className="text-[10px]">AI Coach</span>
-            {/* Little notification status dot to prompt student onboarding */}
-            {profile.verifiedSkills.length < 6 && (
-              <span className="absolute top-2 right-12 w-2 h-2 bg-indigo-600 rounded-full animate-ping"></span>
-            )}
-          </button>
+              <button onClick={() => setActiveTab('coach')} className={`flex items-center gap-2 px-3 py-2 rounded-xl ${activeTab==='coach'? 'bg-primary-500 text-white':'text-slate-600 hover:bg-slate-100'}`}>
+                <Sparkles className="w-4 h-4" /> <span className="text-sm hidden sm:inline">AI Coach</span>
+              </button>
+            </div>
 
-          <button
-            onClick={() => setActiveTab('profile')}
-            className={`flex flex-col items-center justify-center py-1.5 rounded-xl transition-all cursor-pointer ${
-              activeTab === 'profile'
-                ? 'text-indigo-600 bg-indigo-50/50 font-black'
-                : 'text-gray-400 hover:text-gray-600 font-medium'
-            }`}
-            id="nav-btn-profile"
-          >
-            <User className="w-5 h-5 mb-0.5" />
-            <span className="text-[10px]">My Profile</span>
-          </button>
-
+            <div className="flex items-center gap-3">
+              <button onClick={() => setActiveTab('profile')} className={`flex items-center gap-2 px-3 py-2 rounded-xl ${activeTab==='profile'? 'bg-primary-500 text-white':'text-slate-600 hover:bg-slate-100'}`}>
+                <User className="w-4 h-4" /> <span className="text-sm hidden sm:inline">My Profile</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
 

@@ -10,6 +10,14 @@ interface JobDetailModalProps {
 }
 
 export default function JobDetailModal({ gig, profile, onClose }: JobDetailModalProps) {
+  const detailImages: Record<string, string> = {
+    Design: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1400&q=80',
+    'Dev & Tech': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80',
+    Marketing: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80',
+    'Writing & Content': 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80',
+  };
+  const heroImage = detailImages[gig.category] ?? 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80';
+
   // AI Match engine state
   const [matchReport, setMatchReport] = useState<{
     summary: string;
@@ -85,7 +93,7 @@ export default function JobDetailModal({ gig, profile, onClose }: JobDetailModal
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-900/40 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div className="fixed inset-0 bg-slate-950/45 backdrop-blur-md z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       {/* Background click listener */}
       <div className="absolute inset-0" onClick={onClose} />
 
@@ -95,7 +103,7 @@ export default function JobDetailModal({ gig, profile, onClose }: JobDetailModal
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-        className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-3xl shadow-xl border border-gray-100 z-10 flex flex-col max-h-[92vh] sm:max-h-[85vh] relative overflow-hidden"
+        className="card w-full max-w-lg rounded-t-3xl sm:rounded-3xl z-10 flex flex-col max-h-[92vh] sm:max-h-[85vh] relative overflow-hidden"
       >
         {/* Modal Close Button */}
         <button
@@ -108,21 +116,24 @@ export default function JobDetailModal({ gig, profile, onClose }: JobDetailModal
         {/* Scrolling view area */}
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
           {/* Top Gig Intro header */}
-          <div className="flex items-start gap-4">
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white text-xl font-bold ${gig.logoBgColor}`}>
-              {gig.company.charAt(0)}
-            </div>
-            <div>
-              <span className="bg-indigo-50 text-indigo-700 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">
-                {gig.category}
-              </span>
-              <h3 className="text-xl font-black text-gray-900 leading-tight mt-1">{gig.title}</h3>
-              <p className="text-sm font-medium text-gray-500">{gig.company}</p>
+          <div className="space-y-4">
+            <div className="photo-frame h-44 shadow-lg" style={{ backgroundImage: `url('${heroImage}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="flex items-start gap-4">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white text-xl font-bold ${gig.logoBgColor}`}>
+                {gig.company.charAt(0)}
+              </div>
+              <div>
+                <span className="bg-white text-slate-700 border border-slate-200 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full">
+                  {gig.category}
+                </span>
+                <h3 className="text-xl font-black text-slate-950 leading-tight mt-1">{gig.title}</h3>
+                <p className="text-sm font-medium text-slate-500">{gig.company}</p>
+              </div>
             </div>
           </div>
 
           {/* Quick gig information list */}
-          <div className="grid grid-cols-2 gap-3 bg-gray-50/50 p-4 rounded-2xl border border-gray-100">
+          <div className="grid grid-cols-2 gap-3 bg-white/75 p-4 rounded-2xl border border-white/70">
             <div className="flex items-center gap-2">
               <DollarSign className="w-5 h-5 text-emerald-600 flex-shrink-0" />
               <div>
@@ -210,7 +221,7 @@ export default function JobDetailModal({ gig, profile, onClose }: JobDetailModal
                   {/* Decorative AI indicator */}
                   <div className="absolute right-4 top-4 text-xl">🤖</div>
                   <h4 className="text-xs font-black tracking-wider text-indigo-300 uppercase mb-2">SkillEarn Match Evaluation</h4>
-                  <p className="text-[11px] text-indigo-10s leading-relaxed font-medium mb-3.5 border-b border-indigo-900/60 pb-3">
+                  <p className="text-[11px] text-indigo-100 leading-relaxed font-medium mb-3.5 border-b border-indigo-900/60 pb-3">
                     {matchReport.summary}
                   </p>
 

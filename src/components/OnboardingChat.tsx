@@ -192,25 +192,25 @@ export default function OnboardingChat({ profile, onUpdateProfileSkills, onCompl
   const currentSkillCard = queryableSkills[selectedSkillIndex];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-160px)] min-h-[550px] bg-gray-50/50 rounded-3xl border border-gray-100 overflow-hidden">
+    <div className="flex flex-col h-[calc(100vh-160px)] min-h-[550px] glass-card rounded-3xl border border-white/30 overflow-hidden shadow-glass-lg">
       {/* Top Coach Banner */}
-      <div className="bg-white border-b border-gray-100 p-4 flex items-center justify-between">
+      <div className="glass-card border-b border-white/20 p-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="relative">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white">
-              <Sparkles className="w-5 h-5" />
-            </div>
-            <div className="absolute -bottom-1 -right-1 bg-green-500 w-3 h-3 rounded-full border-2 border-white"></div>
-          </div>
+          <div className="photo-frame w-12 h-12 shadow-sm" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=200&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <div>
-            <h3 className="font-extrabold text-gray-800 text-sm flex items-center gap-1.5">
+            <h3 className="font-extrabold text-slate-950 text-sm flex items-center gap-1.5">
               Earnie
-              <span className="bg-indigo-50 text-indigo-700 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded">
+              <span className="bg-white text-slate-700 border border-slate-200 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded">
                 Match Coach AI
               </span>
             </h3>
-            <p className="text-[10px] text-gray-400 font-medium">Calibrating your Stanford opportunities...</p>
+            <p className="text-[10px] text-slate-500 font-medium">Calibrating your Stanford opportunities...</p>
           </div>
+        </div>
+
+        <div className="hidden sm:flex items-center gap-3">
+          <div className="photo-frame w-24 h-12" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=300&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div className="photo-frame w-24 h-12" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1496307653780-42ee777d4833?auto=format&fit=crop&w=300&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
         </div>
         
         {swipeHistory.length > 0 && (
@@ -280,15 +280,15 @@ export default function OnboardingChat({ profile, onUpdateProfileSkills, onCompl
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="px-4 py-3 bg-white border-t border-gray-100 flex flex-col items-center"
+            className="px-4 py-3 bg-white/75 border-t border-white/60 flex flex-col items-center"
           >
             <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">
               Certified Talent Swiper ({selectedSkillIndex + 1}/{queryableSkills.length})
             </div>
 
-            <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50/50 p-4 border border-indigo-100 shadow-sm relative overflow-hidden text-center">
+            <div className="w-full max-w-sm rounded-2xl bg-gradient-to-br from-indigo-50 via-white to-purple-50/50 p-4 border border-white/30 shadow-glass-lg relative overflow-hidden text-center">
               <div className="relative z-10 py-4">
-                <div className="text-3xl mb-2">⭐</div>
+                <div className="photo-frame h-32 mb-3" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
                 <h4 className="text-lg font-black text-indigo-950 tracking-tight">{currentSkillCard}</h4>
                 <p className="text-xs text-indigo-600 font-bold mt-1">Verify this skill for client gigs?</p>
               </div>
@@ -299,17 +299,17 @@ export default function OnboardingChat({ profile, onUpdateProfileSkills, onCompl
             <div className="flex gap-4 mt-3 w-full max-w-sm">
               <button
                 onClick={() => handleSwipe(false)}
-                className="flex-1 py-2.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1 cursor-pointer transition-colors"
+                className="flex-1 py-2.5 bg-rose-50/70 border border-rose-200 hover:bg-rose-100 text-rose-600 rounded-2xl text-sm font-extrabold flex items-center justify-center gap-2 cursor-pointer transition-all"
                 id="btn-swipe-no"
               >
-                <X className="w-4 h-4" /> No / Pass
+                <X className="w-4 h-4" /> <span>No</span>
               </button>
               <button
                 onClick={() => handleSwipe(true)}
-                className="flex-1 py-2.5 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-600 rounded-xl text-xs font-extrabold flex items-center justify-center gap-1 cursor-pointer transition-colors"
+                className="flex-1 py-2.5 bg-gradient-to-r from-primary-500 to-purple-600 text-white rounded-2xl text-sm font-extrabold flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md"
                 id="btn-swipe-yes"
               >
-                <Check className="w-4 h-4" /> Yes / Certify
+                <Check className="w-4 h-4" /> <span>Certify</span>
               </button>
             </div>
           </motion.div>
@@ -318,7 +318,7 @@ export default function OnboardingChat({ profile, onUpdateProfileSkills, onCompl
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="px-4 py-4 bg-emerald-50/80 border-t border-emerald-100 flex flex-col items-center text-center space-y-2.5"
+              className="px-4 py-4 bg-emerald-50/80 border-t border-emerald-100 flex flex-col items-center text-center space-y-2.5"
           >
             <div>
               <div className="inline-flex w-7 h-7 bg-emerald-600 rounded-full items-center justify-center text-white mb-1 shadow-sm">

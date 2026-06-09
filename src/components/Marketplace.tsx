@@ -13,6 +13,13 @@ export default function Marketplace({ onSelectGig, profile }: MarketplaceProps) 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeFilter, setActiveFilter] = useState<'all' | 'hot' | 'topTier' | 'fastPay'>('all');
+  const cardImages = [
+    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
+  ];
 
   // Handle category and text searching
   const filteredListings = sampleJobListings.filter(gig => {
@@ -47,22 +54,45 @@ export default function Marketplace({ onSelectGig, profile }: MarketplaceProps) 
 
   return (
     <div className="space-y-6">
-      {/* Dynamic Header */}
-      <div className="p-6 bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 rounded-3xl text-white shadow-xl relative overflow-hidden">
-        <div className="relative z-10">
-          <span className="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider backdrop-blur-sm">
-            🎓 Campus Opportunities
-          </span>
-          <h1 className="text-3xl font-extrabold tracking-tight mt-3">
-            How do you want to <span className="text-yellow-300">earn</span> today?
-          </h1>
-          <p className="text-blue-100 mt-2 text-sm max-w-md">
-            Matches calibrated directly with your Stanford major, verified badges, and availability.
-          </p>
+      {/* Photo-led hero */}
+      <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-4">
+        <div className="card p-6 sm:p-8 relative overflow-hidden min-h-[18rem] flex flex-col justify-between">
+          <div className="absolute inset-0 opacity-70" style={{ background: 'radial-gradient(circle at top left, rgba(20,184,166,0.2), transparent 35%), radial-gradient(circle at right, rgba(124,58,237,0.16), transparent 32%)' }} />
+          <div className="relative z-10 max-w-xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/75 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.24em] text-slate-700 border border-white/70">
+              <span className="w-2 h-2 rounded-full bg-primary-500" />
+              Campus opportunities
+            </span>
+            <h1 className="mt-4 text-4xl sm:text-5xl font-black tracking-tight text-slate-950 leading-[0.96]">
+              Earn with a polished, photo-rich workspace.
+            </h1>
+            <p className="mt-4 text-slate-600 text-base sm:text-lg leading-7 max-w-lg">
+              Matches are calibrated to your skills, your schedule, and the best campus gigs. The visual language is now more premium, calm, and modern.
+            </p>
+          </div>
+          <div className="relative z-10 flex items-center gap-3 mt-6">
+            <div className="photo-frame w-24 h-24 sm:w-28 sm:h-28 shadow-lg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=500&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="photo-frame flex-1 h-24 sm:h-28 shadow-lg" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          </div>
         </div>
-        {/* Decorative ambient blobs */}
-        <div className="absolute top-[-50px] right-[-50px] w-48 h-48 rounded-full bg-white/10 blur-xl"></div>
-        <div className="absolute bottom-[-20px] left-[-20px] w-32 h-32 rounded-full bg-yellow-300/10 blur-lg"></div>
+
+        <div className="card p-4 sm:p-5 flex flex-col gap-4 justify-between">
+          <div className="photo-frame h-40 sm:h-52" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+          <div className="grid grid-cols-3 gap-3 text-center">
+            <div className="rounded-2xl bg-slate-950 text-white py-3">
+              <div className="text-lg font-black">98%</div>
+              <div className="text-[10px] uppercase tracking-widest text-slate-300">Top match</div>
+            </div>
+            <div className="rounded-2xl bg-white py-3 border border-slate-100">
+              <div className="text-lg font-black text-slate-950">12</div>
+              <div className="text-[10px] uppercase tracking-widest text-slate-500">Jobs</div>
+            </div>
+            <div className="rounded-2xl bg-white py-3 border border-slate-100">
+              <div className="text-lg font-black text-slate-950">4.9★</div>
+              <div className="text-[10px] uppercase tracking-widest text-slate-500">Trust</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* AI command search bar */}
@@ -178,10 +208,11 @@ export default function Marketplace({ onSelectGig, profile }: MarketplaceProps) 
               transition={{ duration: 0.3, delay: index * 0.05 }}
               whileHover={{ y: -3, transition: { duration: 0.1 } }}
               key={gig.id}
-              className="bg-white border border-gray-100 rounded-2xl p-5 hover:shadow-lg transition-all relative overflow-hidden flex flex-col justify-between"
+              className="card hover:shadow-glass-lg transition-all relative overflow-hidden flex flex-col justify-between"
               id={`gig-card-${gig.id}`}
             >
               <div>
+                <div className="photo-frame h-40 mb-4" style={{ backgroundImage: `url('${cardImages[index % cardImages.length]}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
                 {/* Header: Company and Match Badge */}
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex items-center gap-3">
@@ -210,7 +241,7 @@ export default function Marketplace({ onSelectGig, profile }: MarketplaceProps) 
                 </div>
 
                 {/* Job Title */}
-                <h3 className="font-bold text-gray-800 text-base leading-snug hover:text-indigo-600 transition-colors">
+                <h3 className="font-bold text-slate-900 text-base leading-snug hover:text-primary-700 transition-colors">
                   {gig.title}
                 </h3>
 
@@ -241,14 +272,14 @@ export default function Marketplace({ onSelectGig, profile }: MarketplaceProps) 
 
               {/* Bottom section: Rate & Action */}
               <div className="flex items-center justify-between border-t border-gray-50 pt-4 mt-4">
-                <div className="flex items-center text-gray-900 font-bold text-sm">
+                <div className="flex items-center text-slate-900 font-extrabold text-sm">
                   <DollarSign className="w-4 h-4 text-emerald-600 mr-0.5" />
                   <span>{gig.payRate}</span>
                 </div>
                 
                 <button
                   onClick={() => onSelectGig(gig)}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-sm hover:shadow-indigo-100 transition-all cursor-pointer"
+                  className="bg-gradient-to-r from-primary-500 to-purple-600 hover:from-primary-600 hover:to-purple-700 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md transition-all cursor-pointer"
                   id={`btn-apply-${gig.id}`}
                 >
                   Apply & Analyze

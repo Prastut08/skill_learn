@@ -5,6 +5,8 @@ export interface JobListing {
   logoUrl?: string;
   logoBgColor: string;
   payRate: string;
+  location: 'Campus' | 'Neighborhood' | 'Nearby' | 'Remote';
+  workStyle: 'Hourly' | 'Project';
   category: 'Design' | 'Dev & Tech' | 'Writing & Content' | 'Marketing' | 'Business' | 'Other';
   matchScore: number;
   matchBullets: string[];
